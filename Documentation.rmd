@@ -1,0 +1,66 @@
+---
+title: "COVID-19 Data Visualizer Documentation"
+author: "Vishal"
+date: "08/07/2020"
+output: slidy_presentation
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = FALSE)
+library(COVID19)
+library(dplyr)
+```
+
+## The Application
+
+- COVID-19 Data Visualizer is a Shiny app
+- It's an interactive application 
+- Anybody can easily interact with this app
+- The app uses publicly available data on COVID-19
+- The app uses plotly library for further increasing the interactivity 
+
+
+## Graph COntrols
+
+User can toggle following controls in order to see the visualization
+
+1. Country (Drop-down Menu):
+    - User can select one or multiple countries from the drop-down menu
+
+2. Granularity Level (Radio Buttons):
+    - User can select from country, state or city to refine the graph output.
+    (Note: All levels data is not available for all countries)
+
+3. Feature to be plotted (Radio Buttons):
+    - It represents the features that can be plotted in the graph either tests or conformed cases or deaths or recovery cases.
+
+4. Date Range (Date Rannge Picker): 
+    - Data Range is used to filter the data based on the dates in data.
+    - User can pick values from calender as a part of better interactivity.
+
+## The Data
+
+The data that is being used in this app is real time data which is being fetched from "COVID19" library in R.
+
+Here are some of the rows of the data
+
+```{r echo=TRUE, warning=FALSE}
+data <- covid19(verbose = FALSE)
+data <- select(data, c(1, 2, 3, 4, 5, 6, 29))
+head(data)
+```
+
+## Plot and Table
+
+- The plot shown in the visualization is made using plotly library.
+- The plot can be zoomed, panned, and many other operations can be done interactively.
+- x-axis on the plot is date and y axis changes as the feature is changed from the panel.
+
+<h3> Data Table</h3>
+
+- The table below the graph shows the dataset.
+- The data can be filtered using the controls given above the table.
+- User can specify the date rnge and country and the relevant filtered data will be shown in the data.
+- Table represents country, tests, deaths, confirmed cases, recovered cases, and id.
+- Data can be sorted based on any order for every feature using the arrows in the header beside very column .
+
